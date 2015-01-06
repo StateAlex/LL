@@ -74,7 +74,7 @@ public class Student implements Serializable
 		
 	}
 	/*
-	 * Functie care returneaza Transpusa matricii 
+	 * Metoda care returneaza Transpusa matricii 
 	 */
 	protected int[][] transposedMatrix()
 	{
@@ -84,15 +84,18 @@ public class Student implements Serializable
 				trMatrix[j][i]=this._Key[i][j];
 		return trMatrix;
 	}
+	/*
+	 * Metoda care returneaza norma euclidiana a punctului p
+	 */
 	protected double euclidianNormOfP()
 	{
-		int param1=this.id*this.id;
-		int param2=this.an*this.an;
-		int param3=this.restante*this.restante;
-		int param4=Integer.parseInt(this.nume)*Integer.parseInt(this.nume);
-		int param5=Integer.parseInt(this.prenume)*Integer.parseInt(this.prenume);
-		int param6=Integer.parseInt(this.nrMatricol)*Integer.parseInt(this.nrMatricol);
-		double euclidianNorm=Math.sqrt(param1+param2+param3+param4+param5+param6);
+		int param1=this.id * this.id;
+		int param2=this.an * this.an;
+		int param3=this.restante * this.restante;
+		int param4=Integer.parseInt(this.nume) * Integer.parseInt(this.nume);
+		int param5=Integer.parseInt(this.prenume) * Integer.parseInt(this.prenume);
+		int param6=Integer.parseInt(this.nrMatricol) * Integer.parseInt(this.nrMatricol);
+		double euclidianNorm=Math.sqrt(param1 + param2 + param3 + param4 + param5 + param6);
 		return euclidianNorm;
 	}
 }
