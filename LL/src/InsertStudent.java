@@ -15,11 +15,11 @@ public class InsertStudent
 		Session s= sessionFactory.openSession();
 		org.hibernate.Transaction tx= s.beginTransaction();
 		Student student= new Student();
-		student.setId(2);
+		student.setId(3);
 		student.setAn(3);
-		student.setNume("Hanu");
-		student.setPrenume("Theodor");
-		student.setNrMatricol("31093104SL120272");
+		student.setNume("Hriscu");
+		student.setPrenume("Florin");
+		student.setNrMatricol("31022234SL120272");
 		s.save(student);
 		s.flush();
 		tx.commit();
