@@ -1,8 +1,3 @@
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-
 public class EncryptedStudent 
 {
 	protected int[][] _Key=
@@ -15,8 +10,8 @@ public class EncryptedStudent
 				{ 1,3,5,7,8,6,6 },
 				{ 2,4,6,8,1,3,7 }
 			};
-		
-	static Student student= new Student();
+	public double encryptedPoint[]= new double[_Key.length];	
+	public Student student= new Student();
 	
 	double param1=student.id * student.id;
 	double param2=student.an * student.an;
@@ -25,13 +20,22 @@ public class EncryptedStudent
 	double param5=Integer.parseInt(student.prenume) * Integer.parseInt(student.prenume);
 	double param6=Integer.parseInt(student.nrMatricol) * Integer.parseInt(student.nrMatricol);
 	
-	protected static void initStudent()
+	public void initStudent(int id, int an, String nume, String prenume, String nrMatricol)
 	{
-		student.setId(3);
-		student.setAn(3);
-		student.setNume("Hriscu");
-		student.setPrenume("Florin");
-		student.setNrMatricol("31022234SL120272");
+		student.setId(id);
+		student.setAn(an);
+		student.setNume(nume);
+		student.setPrenume(prenume);
+		student.setNrMatricol(nrMatricol);
+	}
+	public void initStudent(int id, int an, String nume, String prenume, String nrMatricol, int nrRestante)
+	{
+		student.setId(id);
+		student.setAn(an);
+		student.setNume(nume);
+		student.setPrenume(prenume);
+		student.setNrMatricol(nrMatricol);
+		student.setRestante(nrRestante);
 	}
 	
 	/*
@@ -79,7 +83,6 @@ public class EncryptedStudent
 		double euclidianNorm=euclidianNormOfP(); 
 		dPlusOneDimPoint[6][0]=0.5 * euclidianNorm * euclidianNorm;
 		
-		double encryptedPoint[]= new double[_Key.length];
 		for(int i=0;i<_Key.length;i++)
 			encryptedPoint[i]=0;
 		
@@ -90,19 +93,5 @@ public class EncryptedStudent
 		System.out.println("Punctul criptat: ");
 		for(int i=0;i<encryptedPoint.length;i++)
 			System.out.print(encryptedPoint[i]+" ");
-	}
-	
-	public static void main(String[] args)
-	{
-		Configuration configuration = new Configuration();
-		configuration.configure("DBconnection.cfg.xml");
-		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-		Session s= sessionFactory.openSession();
-		org.hibernate.Transaction tx= s.beginTransaction();
-		s.save(student);
-		s.flush();
-		tx.commit();
-		s.close();
-	}
+	}	
 }
