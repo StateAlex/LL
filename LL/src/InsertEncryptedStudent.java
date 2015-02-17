@@ -16,11 +16,12 @@ public class InsertEncryptedStudent
 		Session s= sessionFactory.openSession();
 		org.hibernate.Transaction tx= s.beginTransaction();*/
 		EncryptedStudent Estudent=new EncryptedStudent();
-		Estudent.initStudent(1, 3, "State", "Alexandru-Ionut", "3109014SL120272");
+		Estudent.initStudent(50,3,0);
 		Estudent.encryptedPointMethod();
 		/*s.save(Estudent);
 		s.flush();
 		tx.commit();
 		s.close();*/
 	}
+	
 }

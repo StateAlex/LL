@@ -5,11 +5,7 @@
 <id name="id" column="ID" type="integer">
 	<generator class="assigned"></generator>
 </id>
-<property name="nume" column="NUME" type="string"></property>
-<property name="prenume" column="PRENUME" type="string"></property>
 <property name="an" column="AN" type="integer"></property>
 <property name="restante" column="RESTANTE" type="integer"></property>
-<property name="nrMatricol" column="NRMATRICOL" type="string"></property>
-
 </class>
 </hibernate-mapping>
