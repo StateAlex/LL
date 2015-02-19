@@ -10,16 +10,46 @@ public class EncryptedStudent
 	public double encryptedPoint[]= new double[_Key.length+1];	
 	public Student student= new Student();
 	
-	public double param1, param2, param3;
+	public double _Dimension1;
+	public double _Dimension2;
+	public double _Dimension3;
+	public double _EPlus_Dimension;
+	
+	public double get_EPlus_Dimension() {
+		return _EPlus_Dimension;
+	}
+	public void set_EPlus_Dimension(double _EPlus_Dimension) {
+		_EPlus_Dimension = _EPlus_Dimension;
+	}
+	
+	public double get_Dimension1() {
+		return _Dimension1;
+	}
+	public void set_Dimension1(double _Dimension1) {
+		_Dimension1 = _Dimension1;
+	}
+	public double get_Dimension2() {
+		return _Dimension2;
+	}
+	public void set_Dimension2(double _Dimension2) {
+		_Dimension2 = _Dimension2;
+	}
+	public double get_Dimension3() {
+		return _Dimension3;
+	}
+	public void set_Dimension3(double _Dimension3) {
+		_Dimension3 = _Dimension3;
+	}
+
 	public void initStudent(int id, int an, int nrRestante)
 	{
 		student.setId(id);
 		student.setAn(an);
 		student.setRestante(nrRestante);
 		
-		param1=student.id * student.id;
-		param2=student.an * student.an;
-		param3=student.restante * student.restante;
+		_Dimension1=student.id * student.id;
+		_Dimension2=student.an * student.an;
+		_Dimension3=student.restante * student.restante;
 	}
 	/*
  	 * Metoda care returneaza Transpusa matricii 
@@ -49,7 +79,7 @@ public class EncryptedStudent
 	protected double euclidianNormOfP()
 	{
 		double euclidianNorm;
-		euclidianNorm=Math.sqrt(param1 + param2 + param3 );
+		euclidianNorm=Math.sqrt(_Dimension1 + _Dimension2 + _Dimension3 );
 		System.out.println("Norma euclidiana: "+ euclidianNorm);
 		return euclidianNorm;
 	}
@@ -61,9 +91,9 @@ public class EncryptedStudent
 		double dPlusOneDimPoint[]=new double [_Key.length+1];
 		// vectorul normal, la care se ataseaza 0.5 * norma euclidiana
 		
-		dPlusOneDimPoint[0]=param1;
-		dPlusOneDimPoint[1]=param2;
-		dPlusOneDimPoint[2]=param3;
+		dPlusOneDimPoint[0]=_Dimension1;
+		dPlusOneDimPoint[1]=_Dimension2;
+		dPlusOneDimPoint[2]=_Dimension3;
 		double euclidianNorm=euclidianNormOfP();
 		dPlusOneDimPoint[3]=0.5 * euclidianNorm * euclidianNorm;
 		
@@ -74,10 +104,13 @@ public class EncryptedStudent
 		int transposedMatrix[][]=transposedMatrix();
 		for(int i=0;i<transposedMatrix.length;i++)
 			for(int j=0;j<transposedMatrix.length;j++)
-				encryptedPoint[i]=encryptedPoint[i]+transposedMatrix[i][j] * dPlusOneDimPoint[j];
+				encryptedPoint[i] = encryptedPoint[i]+transposedMatrix[i][j] * dPlusOneDimPoint[j];
 		
-		System.out.println("Punctul criptat: ");
-		for(int i=0;i<encryptedPoint.length-1;i++)
-			System.out.print(encryptedPoint[i]+" ");
+		_Dimension1 = encryptedPoint[0];
+		_Dimension2 = encryptedPoint[1];
+		_Dimension3 = encryptedPoint[2];
+		_EPlus_Dimension = encryptedPoint[3];
+				
+		System.out.println(_Dimension1 +" "+ _Dimension2 + " " + _Dimension3 +  " " + _EPlus_Dimension);
 	}	
 }
