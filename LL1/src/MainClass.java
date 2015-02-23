@@ -3,14 +3,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 
-public class InsertEncryptedStudent 
+
+public class MainClass 
 {
 	
 	public static void main(String[] args) throws SQLException
@@ -67,10 +63,6 @@ public class InsertEncryptedStudent
 		EncryptedStudent Estudent=new EncryptedStudent();
 		Estudent.initStudent(51,3,1);
 		Estudent.encryptedPointMethod();
-		/*s.save(Estudent);
-		s.flush();
-		tx.commit();
-		s.close();*/
 	}
 	
 }

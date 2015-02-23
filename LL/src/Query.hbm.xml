@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 <class name="EncryptedStudent" table="ENCRYPTEDSTUDENT">
-<id name="_Dimension1" column="DIMENSION1" type="double">
+<id name="dimension1" column="DIMENSION1" type="double">
 	<generator class="assigned"></generator>
 </id>
-<property name="_Dimension2" column="DIMENSION2" type="double"></property>
-<property name="_Dimension3" column="DIMENSION3" type="double"></property>
-<property name="_EPlusDimension" column="D_DIMENSION" type="double"></property>
+<property name="dimension2" column="DIMENSION2" type="double"></property>
+<property name="dimension3" column="DIMENSION3" type="double"></property>
+<property name="ePlusDimension" column="DDIMENSION" type="double"></property>
 </class>
 </hibernate-mapping>

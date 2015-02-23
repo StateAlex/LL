@@ -5,5 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate4.3.7"/>
 	<classpathentry kind="lib" path="D:/kituri/eclipse EE/ojdbc14.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/StateAlex/Desktop/toate jar-urile/hibernate-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/StateAlex/Downloads/hibernate-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
