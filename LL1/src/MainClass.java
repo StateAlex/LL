@@ -3,9 +3,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
 public class MainClass 
 {
 	
@@ -26,14 +23,32 @@ public class MainClass
             myStmt = myConn.createStatement();
              
             // 3. Execute SQL query
-            myRs = myStmt.executeQuery("select * from ENCRYPTEDSTUDENT");
-             
+            ResultSet r = myStmt.executeQuery("SELECT COUNT(*) AS rowcount FROM ENCRYPTEDSTUDENT");
+            r.next();
+            int count = r.getInt("rowcount") ;
+            r.close() ;
+            System.out.println("MyTable has " + count + " row(s).");
+            // am extras cate randuri sunt in baza de date, acum putem aloca memorie matricei de puncte criptate
+            
+            // "INSERT INTO ENCRYPTEDSTUDENT(DIMENSION1, DIMENSION2, DIMENSION3, DDIMENSION) VALUES (1,2,3,4)"
+            /* 
             // 4. Process the result set
             while (myRs.next()) 
             {
                 System.out.println(myRs.getString("last_name") + ", " 
                                 + myRs.getString("first_name"));
-            }
+            }*/
+            
+            
+        	EncryptedStudent Estudent=new EncryptedStudent();
+    		Estudent.initStudent(51,3,1);
+    		Estudent.encryptedPointMethod();
+    		java.sql.Statement myStmtInsert = myConn.createStatement();
+    		ResultSet r1 = myStmtInsert.executeQuery("INSERT INTO ENCRYPTEDSTUDENT(DIMENSION1, DIMENSION2, DIMENSION3, DDIMENSION)"
+    				+ " VALUES ("+Estudent.dimension1+","+Estudent.dimension2+","+Estudent.dimension3+","+Estudent.ePlusdimension+")");
+    		System.out.println("Inserare reusita");
+    		
+            
         }
         catch (Exception exc) {
             exc.printStackTrace();
@@ -59,10 +74,7 @@ public class MainClass
 		 * SELECT COUNT(*) FROM table_name;
 		 * Numaram cate randuri sunt in tabela pentru a putea aloca memorie pentru o matrice in care sa importam datele.
 		 */
-		
-		EncryptedStudent Estudent=new EncryptedStudent();
-		Estudent.initStudent(51,3,1);
-		Estudent.encryptedPointMethod();
+       
 	}
 	
 }

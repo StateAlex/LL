@@ -5,7 +5,7 @@ public class EncryptedStudent implements Serializable
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	protected int[][] _Key=
 			{
 				{ 1,2,3,4},
@@ -16,47 +16,47 @@ public class EncryptedStudent implements Serializable
 	public double encryptedPoint[]= new double[_Key.length+1];	
 	public Student student= new Student();
 	
-	private double dimension1;
-	private double dimension2;
-	private double dimension3;
-	private double ePlusdimension;
+	public double dimension1;
+	public double dimension2;
+	public double dimension3;
+	public double ePlusdimension;
 	
-	private double getdimension1() 
+	public double getdimension1() 
 	{
 		return this.dimension1;
 	}
 	
-	private void setdimension1(double dimension1) 
+	public void setdimension1(double dimension1) 
 	{
 		this.dimension1 = dimension1;
 	}
 	
-	private double getdimension2() 
+	public double getdimension2() 
 	{
 		return this.dimension2;
 	}
 	
-	private void setdimension2(double dimension2) 
+	public void setdimension2(double dimension2) 
 	{
 		this.dimension2 = dimension2;
 	}
 	
-	private double getdimension3() 
+	public double getdimension3() 
 	{
 		return this.dimension3;
 	}
 	
-	private void setdimension3(double dimension3) 
+	public void setdimension3(double dimension3) 
 	{
 		this.dimension3 = dimension3;
 	}
 	
-	private double getePlusdimension() 
+	public double getePlusdimension() 
 	{
 		return this.ePlusdimension;
 	}
 	
-	private void setePlusdimension(double ePlusdimension) 
+	public void setePlusdimension(double ePlusdimension) 
 	{
 		this.ePlusdimension = ePlusdimension;
 	}
@@ -66,9 +66,9 @@ public class EncryptedStudent implements Serializable
 		student.setAn(an);
 		student.setRestante(nrRestante);
 		
-		this.dimension1=student.id * student.id;
-		this.dimension2=student.an * student.an;
-		this.dimension3=student.restante * student.restante;
+		setdimension1(student.id * student.id);
+		setdimension2(student.an * student.an);
+		setdimension3(student.restante * student.restante);
 	}
 	/*
  	 * Metoda care returneaza Transpusa matricii 
@@ -98,7 +98,7 @@ public class EncryptedStudent implements Serializable
 	protected double euclidianNormOfP()
 	{
 		double euclidianNorm;
-		euclidianNorm=Math.sqrt(this.dimension1 + this.dimension2 + this.dimension3 );
+		euclidianNorm=Math.sqrt(getdimension1() + getdimension2() + getdimension3() );
 		System.out.println("Norma euclidiana: "+ euclidianNorm);
 		return euclidianNorm;
 	}
@@ -110,9 +110,9 @@ public class EncryptedStudent implements Serializable
 		double dPlusOneDimPoint[]=new double [_Key.length+1];
 		// vectorul normal, la care se ataseaza 0.5 * norma euclidiana
 		
-		dPlusOneDimPoint[0]=this.dimension1;
-		dPlusOneDimPoint[1]=this.dimension2;
-		dPlusOneDimPoint[2]=this.dimension3;
+		dPlusOneDimPoint[0]=getdimension1();
+		dPlusOneDimPoint[1]=getdimension2();
+		dPlusOneDimPoint[2]=getdimension3();
 		double euclidianNorm=euclidianNormOfP();
 		dPlusOneDimPoint[3]=0.5 * euclidianNorm * euclidianNorm;
 		
@@ -125,11 +125,11 @@ public class EncryptedStudent implements Serializable
 			for(int j=0;j<transposedMatrix.length;j++)
 				encryptedPoint[i] = encryptedPoint[i]+transposedMatrix[i][j] * dPlusOneDimPoint[j];
 		
-		this.dimension1 = encryptedPoint[0];
-		this.dimension2 = encryptedPoint[1];
-		this.dimension3 = encryptedPoint[2];
-		this.ePlusdimension = encryptedPoint[3];
+		setdimension1(encryptedPoint[0]);
+		setdimension2(encryptedPoint[1]);
+		setdimension3(encryptedPoint[2]);
+		setePlusdimension(encryptedPoint[3]);
 				
-		System.out.println(dimension1 +" "+ dimension2 + " " + dimension3 +  " " + ePlusdimension);
+		System.out.println(getdimension1() +" "+ getdimension2() + " " + getdimension3() + " " + getePlusdimension());
 	}	
 }
