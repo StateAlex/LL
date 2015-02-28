@@ -4,6 +4,13 @@ import java.util.Random;
 public class EncryptedQuery 
 {
 	private int nrRandom;
+	private int[][] _Key=
+		{
+			{ 1,2,3,4},
+			{ 5,6,7,8},
+			{ 4,3,2,1},
+			{ 8,7,6,5}
+		};
 	public EncryptedQuery()
 	{
 		// generarea numarului random mai mare ca 0
@@ -16,7 +23,7 @@ public class EncryptedQuery
 	}
 
 	// Metoda care calculeaza determinantul matricii cheie
-	public int _Determinant(int[][] matrix)
+	public int _Determinant(int [][] matrix)
 	{ //method sig. takes a matrix (two dimensional array), returns determinant.
 	    int sum = 0; 
 	    int s;
@@ -52,43 +59,51 @@ public class EncryptedQuery
 	    }
 	    return(sum); //returns determinant value. once stack is finished, returns final determinant.
 	  }
-	
-	public double[][] _PartitionMatrix(int nrLin, int nrCol, double[][] matrix)
+	/*
+	 * Metoda care returneaza o matrice de i linii si j coloane
+	 */
+	public int[][] _PartitionMatrix(int nrLin, int nrCol, int[][] matrix)
 	{
-		double[][] newMatrix = new double [nrLin][nrCol];
+		int[][] newMatrix = new int [nrLin][nrCol];
 		for(int i=0;i<=nrLin;i++)
 			for(int j=0;j<=nrCol;j++)
 				newMatrix[i][j]=matrix[i][j];
 		return newMatrix;
 	}
 	
-	
-	public double[][] _AdjMatrix(int[][] matrix, int nrDimensions)
+	/*
+	 * Metoda care calculeaza inversa matricei
+	 */
+	public double[][] _InvMatrix()
 	{
-		double [][] adjMatrix= new double[nrDimensions][nrDimensions];
+		// calculam matricea adjuncta si impartim cu det. key
+		int nrDimensions = _Key.length;
+		double [][] invMatrix= new double[nrDimensions][nrDimensions];
 		//am stabilit semnul fiecarui element din matrice
 		for(int i=0;i<nrDimensions;i++)
 			for(int j=0; j<nrDimensions;j++)
 				{
-					adjMatrix[i][j]=Math.pow(-1,i+j+1) * _Determinant(_PartitionMatrix(i,j,/*  */));
+					invMatrix[i][j]=Math.pow(-1,i+j+1);
+					invMatrix[i][j]=invMatrix[i][j] * _Determinant(_PartitionMatrix(i,j,_Key)) / _Determinant(_Key);;
 				}
-		
-		return adjMatrix;
-	}
-	public double[][] _InversableMatrix()
-	{
-		
+		return invMatrix;
 	}
 	
 	//criptarea punctului din interogare
 	public double[] _QueryPoint(double toEncryptPoint[], int nrDimensions)
 	{
 		double EncryptedPoint[]= new double [nrDimensions+1];
+		double finalEncryptedPoint[]= new double [nrDimensions+1];
+		double [][] invMatrix= new double[nrDimensions+1][nrDimensions+1];
+		invMatrix=_InvMatrix();
 		
-		for(int i=0; i<nrDimensions+1; i++)
-			EncryptedPoint[i]=nrRandom * toEncryptPoint[i];
+		for(int i=0; i<nrDimensions; i++)
+			EncryptedPoint[i] = nrRandom * toEncryptPoint[i];
 		EncryptedPoint[nrDimensions]=nrRandom;
 		
+		for(int i=0;i<nrDimensions+1;i++)
+			for(int j=0;j<nrDimensions+1;j++)
+				finalEncryptedPoint[i]=finalEncryptedPoint[i]+invMatrix[i][j]*EncryptedPoint[j];
 		return EncryptedPoint;
 	}
 }
