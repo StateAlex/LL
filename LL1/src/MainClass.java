@@ -41,7 +41,7 @@ public class MainClass
             
             
         	EncryptedStudent Estudent=new EncryptedStudent();
-    		Estudent.initStudent(51,3,1);
+    		Estudent.initStudent(50,3,1);
     		Estudent.encryptedPointMethod();
     		java.sql.Statement myStmtInsert = myConn.createStatement();
     		ResultSet r1 = myStmtInsert.executeQuery("INSERT INTO ENCRYPTEDSTUDENT(DIMENSION1, DIMENSION2, DIMENSION3, DDIMENSION)"
@@ -66,14 +66,6 @@ public class MainClass
                 myConn.close();
             }
         }
-
-		//String sql = "SELECT DIMENSION1 FROM ENCRYPTEDSTUDENT";
-		//SQLQuery query = s.createSQLQuery(sql).addScalar("DIMENSION1");
-
-		/*
-		 * SELECT COUNT(*) FROM table_name;
-		 * Numaram cate randuri sunt in tabela pentru a putea aloca memorie pentru o matrice in care sa importam datele.
-		 */
        
 	}
 	

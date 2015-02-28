@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class EncryptedStudent implements Serializable
+public class EncryptedStudent
 {
 	/**
 	 * 
